@@ -8,5 +8,6 @@ namespace Alpha_FTP
 {
     public class Class1
     {
+        
     }
 }

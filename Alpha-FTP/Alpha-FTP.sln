@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha-FTP", "Alpha-FTP\Alpha-FTP.csproj", "{7EBC1F98-4CDC-4B7A-805B-F46B104636AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha-FTP-terminal", "..\Alpha-FTP-terminal\Alpha-FTP-terminal.csproj", "{EB5A92E8-F2EE-4A7F-B79E-1F916837A3CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7EBC1F98-4CDC-4B7A-805B-F46B104636AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EBC1F98-4CDC-4B7A-805B-F46B104636AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EBC1F98-4CDC-4B7A-805B-F46B104636AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB5A92E8-F2EE-4A7F-B79E-1F916837A3CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB5A92E8-F2EE-4A7F-B79E-1F916837A3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB5A92E8-F2EE-4A7F-B79E-1F916837A3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB5A92E8-F2EE-4A7F-B79E-1F916837A3CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

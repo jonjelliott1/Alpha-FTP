@@ -10,6 +10,8 @@ namespace Alpha_FTP_terminal
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello World.");
+            Console.ReadLine();
         }
     }
 }
