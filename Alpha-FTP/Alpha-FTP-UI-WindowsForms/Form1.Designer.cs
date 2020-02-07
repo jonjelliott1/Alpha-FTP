@@ -52,7 +52,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +83,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Connect";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -116,6 +120,8 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 515);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(934, 22);
@@ -199,22 +205,22 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(12, 102);
+            this.treeView1.Location = new System.Drawing.Point(12, 130);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(400, 200);
+            this.treeView1.Size = new System.Drawing.Size(400, 172);
             this.treeView1.TabIndex = 3;
             // 
             // treeView2
             // 
-            this.treeView2.Location = new System.Drawing.Point(517, 102);
+            this.treeView2.Location = new System.Drawing.Point(517, 130);
             this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(400, 200);
+            this.treeView2.Size = new System.Drawing.Size(400, 172);
             this.treeView2.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 82);
+            this.label4.Location = new System.Drawing.Point(12, 114);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(33, 13);
             this.label4.TabIndex = 5;
@@ -223,7 +229,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(517, 82);
+            this.label5.Location = new System.Drawing.Point(514, 114);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 6;
@@ -245,11 +251,25 @@
             this.listBox2.Size = new System.Drawing.Size(400, 173);
             this.listBox2.TabIndex = 8;
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(15, 82);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(902, 20);
+            this.textBox4.TabIndex = 9;
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(101, 17);
+            this.toolStripStatusLabel1.Text = "Ready to Connect";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 537);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label5);
@@ -265,6 +285,8 @@
             this.Text = "Alpha-FTP";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -297,6 +319,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
