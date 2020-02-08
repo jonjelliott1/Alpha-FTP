@@ -31,12 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,19 +48,19 @@
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.buttonLoadDirectory = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.buttonDeleteSelectedFtpItem = new System.Windows.Forms.Button();
+            this.buttonCreateNewDirectory = new System.Windows.Forms.Button();
+            this.buttonRenameSelected = new System.Windows.Forms.Button();
+            this.listViewFTPItems = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -79,31 +82,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login Info";
             // 
-            // button1
+            // label3
             // 
-            this.button1.Location = new System.Drawing.Point(842, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Connect";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(536, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Password:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // textBox1
+            // textBox3
             // 
-            this.textBox1.Location = new System.Drawing.Point(54, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 20);
-            this.textBox1.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Host:";
+            this.textBox3.Location = new System.Drawing.Point(598, 16);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(216, 20);
+            this.textBox3.TabIndex = 5;
             // 
             // label2
             // 
@@ -122,6 +116,32 @@
             this.textBox2.TabIndex = 3;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Host:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(54, 16);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(216, 20);
+            this.textBox1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(842, 16);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Connect";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -131,6 +151,12 @@
             this.statusStrip1.Size = new System.Drawing.Size(934, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(101, 17);
+            this.toolStripStatusLabel1.Text = "Ready to Connect";
             // 
             // menuStrip1
             // 
@@ -190,23 +216,6 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(536, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Password:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(598, 16);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(216, 20);
-            this.textBox3.TabIndex = 5;
-            // 
             // treeView1
             // 
             this.treeView1.AllowDrop = true;
@@ -223,11 +232,18 @@
             this.treeView1.Size = new System.Drawing.Size(400, 153);
             this.treeView1.TabIndex = 3;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "folder.png");
+            this.imageList1.Images.SetKeyName(1, "folder2.png");
+            // 
             // treeView2
             // 
             this.treeView2.Location = new System.Drawing.Point(517, 130);
             this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(400, 172);
+            this.treeView2.Size = new System.Drawing.Size(400, 120);
             this.treeView2.TabIndex = 4;
             // 
             // label4
@@ -253,16 +269,8 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 328);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(400, 173);
+            this.listBox1.Size = new System.Drawing.Size(400, 134);
             this.listBox1.TabIndex = 7;
-            // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(517, 328);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(400, 173);
-            this.listBox2.TabIndex = 8;
             // 
             // textBox4
             // 
@@ -270,12 +278,6 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(902, 20);
             this.textBox4.TabIndex = 9;
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(101, 17);
-            this.toolStripStatusLabel1.Text = "Ready to Connect";
             // 
             // buttonLoadDirectory
             // 
@@ -294,22 +296,59 @@
             this.progressBar1.Size = new System.Drawing.Size(397, 14);
             this.progressBar1.TabIndex = 11;
             // 
-            // imageList1
+            // buttonDeleteSelectedFtpItem
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "folder.png");
-            this.imageList1.Images.SetKeyName(1, "folder2.png");
+            this.buttonDeleteSelectedFtpItem.Location = new System.Drawing.Point(539, 468);
+            this.buttonDeleteSelectedFtpItem.Name = "buttonDeleteSelectedFtpItem";
+            this.buttonDeleteSelectedFtpItem.Size = new System.Drawing.Size(108, 23);
+            this.buttonDeleteSelectedFtpItem.TabIndex = 12;
+            this.buttonDeleteSelectedFtpItem.Text = "Delete Selected";
+            this.buttonDeleteSelectedFtpItem.UseVisualStyleBackColor = true;
+            this.buttonDeleteSelectedFtpItem.Click += new System.EventHandler(this.buttonDeleteSelectedFtpItem_Click);
+            // 
+            // buttonCreateNewDirectory
+            // 
+            this.buttonCreateNewDirectory.Location = new System.Drawing.Point(657, 468);
+            this.buttonCreateNewDirectory.Name = "buttonCreateNewDirectory";
+            this.buttonCreateNewDirectory.Size = new System.Drawing.Size(134, 23);
+            this.buttonCreateNewDirectory.TabIndex = 13;
+            this.buttonCreateNewDirectory.Text = "Create New Directory";
+            this.buttonCreateNewDirectory.UseVisualStyleBackColor = true;
+            this.buttonCreateNewDirectory.Click += new System.EventHandler(this.buttonCreateNewDirectory_Click);
+            // 
+            // buttonRenameSelected
+            // 
+            this.buttonRenameSelected.Location = new System.Drawing.Point(797, 468);
+            this.buttonRenameSelected.Name = "buttonRenameSelected";
+            this.buttonRenameSelected.Size = new System.Drawing.Size(120, 23);
+            this.buttonRenameSelected.TabIndex = 14;
+            this.buttonRenameSelected.Text = "Rename Selected";
+            this.buttonRenameSelected.UseVisualStyleBackColor = true;
+            // 
+            // listViewFTPItems
+            // 
+            this.listViewFTPItems.HideSelection = false;
+            this.listViewFTPItems.Location = new System.Drawing.Point(517, 320);
+            this.listViewFTPItems.MultiSelect = false;
+            this.listViewFTPItems.Name = "listViewFTPItems";
+            this.listViewFTPItems.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.listViewFTPItems.Size = new System.Drawing.Size(400, 142);
+            this.listViewFTPItems.TabIndex = 15;
+            this.listViewFTPItems.UseCompatibleStateImageBehavior = false;
+            this.listViewFTPItems.View = System.Windows.Forms.View.Details;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 537);
+            this.Controls.Add(this.listViewFTPItems);
+            this.Controls.Add(this.buttonRenameSelected);
+            this.Controls.Add(this.buttonCreateNewDirectory);
+            this.Controls.Add(this.buttonDeleteSelectedFtpItem);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.buttonLoadDirectory);
             this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -357,12 +396,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button buttonLoadDirectory;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button buttonDeleteSelectedFtpItem;
+        private System.Windows.Forms.Button buttonCreateNewDirectory;
+        private System.Windows.Forms.Button buttonRenameSelected;
+        private System.Windows.Forms.ListView listViewFTPItems;
     }
 }
 

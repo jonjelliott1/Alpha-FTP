@@ -132,7 +132,29 @@ namespace Alpha_FTP_UI_WindowsForms
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             return;
         }
-
+        public void removeDirectory(string deleteFile)
+        {
+            try
+            {
+                /* Create an FTP Request */
+                ftpRequest = (FtpWebRequest)WebRequest.Create(host + "/" + deleteFile);
+                /* Log in to the FTP Server with the User Name and Password Provided */
+                ftpRequest.Credentials = new NetworkCredential(user, pass);
+                /* When in doubt, use these options */
+                ftpRequest.UseBinary = true;
+                ftpRequest.UsePassive = true;
+                ftpRequest.KeepAlive = true;
+                /* Specify the Type of FTP Request */
+                ftpRequest.Method = WebRequestMethods.Ftp.RemoveDirectory;
+                /* Establish Return Communication with the FTP Server */
+                ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                /* Resource Cleanup */
+                ftpResponse.Close();
+                ftpRequest = null;
+            }
+            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+            return;
+        }
         /* Rename File */
         public void rename(string currentFileNameAndPath, string newFileName)
         {
@@ -225,6 +247,8 @@ namespace Alpha_FTP_UI_WindowsForms
             /* Return an Empty string Array if an Exception Occurs */
             return "";
         }
+
+
 
         /* Get the Size of a File */
         public string getFileSize(string fileName)

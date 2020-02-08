@@ -13,9 +13,19 @@ namespace Alpha_FTP_UI_WindowsForms
 {
     public partial class Form1 : Form
     {
+        ftp _ftpClient = null;
+        string _currentDirectory = "";
         public Form1()
         {
             InitializeComponent();
+            //Prefill connection information
+            textBox1.Text = "ftp://192.168.1.18";
+            textBox2.Text = "ftpuser";
+            textBox3.Text = "ftpuser";
+
+           
+
+
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -36,6 +46,73 @@ namespace Alpha_FTP_UI_WindowsForms
             string password = textBox3.Text;
             bool success = false;
             success = ConnectToFTP(host, userName, password);
+
+            _currentDirectory = $"/home/{userName}";
+
+
+            UpdateListViewFTPItems(_currentDirectory);
+        }
+
+        private void UpdateListViewFTPItems(string directory)
+        {
+            listViewFTPItems.Clear();
+
+            listViewFTPItems.Columns.Add("Name", 100);
+            listViewFTPItems.Columns.Add("Type", 100);
+            listViewFTPItems.Columns.Add("Size", 100);
+            listViewFTPItems.Columns.Add("Last Updated", 100);
+            /* Get Contents of a Directory (Names Only) */
+            string[] detailDirectoryListing = _ftpClient.directoryListDetailed(directory);
+
+            var fileOrDirectoryName = "";
+
+            var fileType = "";
+            var fileSize = "";
+            var lastUpdatedDateTime = "";
+
+
+            for (int i = 0; i < detailDirectoryListing.Count(); i++)
+            {
+                if (detailDirectoryListing[i].StartsWith("-"))
+                {
+                    //If it starts with a "-" then it means that this is a file not a directory.
+
+                    fileOrDirectoryName = detailDirectoryListing[i].Substring(56);
+                    fileType = "File";
+                    fileSize = detailDirectoryListing[i].Substring(30, 12);
+                    lastUpdatedDateTime = detailDirectoryListing[i].Substring(43, 12);
+                }
+
+                else if (detailDirectoryListing[i].StartsWith("d"))
+                {
+                    //If it starts with a "d" then it is a directory.
+                    fileOrDirectoryName = detailDirectoryListing[i].Substring(56);
+                    fileType = "Directory";
+                    fileSize = detailDirectoryListing[i].Substring(30, 12);
+                    lastUpdatedDateTime = detailDirectoryListing[i].Substring(43, 12);
+                }
+                else if (detailDirectoryListing[i] == "")
+                {
+                    break;
+                }
+                else
+                {
+                    MessageBox.Show("Unexpected value");
+                }
+
+
+
+                string[] arr = new string[4];
+                ListViewItem itm;
+                //add items to ListView
+                arr[0] = fileOrDirectoryName;
+                arr[1] = fileType;
+                arr[2] = fileSize;
+                arr[3] = lastUpdatedDateTime;
+                itm = new ListViewItem(arr);
+                listViewFTPItems.Items.Add(itm);
+
+            }
         }
 
         private bool ConnectToFTP(string host, string userName, string password)
@@ -44,14 +121,9 @@ namespace Alpha_FTP_UI_WindowsForms
 
             toolStripStatusLabel1.Text = "Attempting to connect...";
             ftp ftpClient = new ftp(host, userName, password);
+            _ftpClient = ftpClient;
 
-
-            /* Get Contents of a Directory (Names Only) */
-            string[] simpleDirectoryListing = ftpClient.directoryListDetailed($"/home/{userName}");
-            for (int i = 0; i < simpleDirectoryListing.Count(); i++) { listBox2.Items.Add(simpleDirectoryListing[i]); }
-
-            //toolStripStatusLabel1.Text = "Connection Failed Try Again.";
-            return false;
+           return true;
         }
 
         private void buttonLoadDirectory_Click(object sender, EventArgs e)
@@ -131,11 +203,87 @@ namespace Alpha_FTP_UI_WindowsForms
             }
         }
 
+        private void buttonDeleteSelectedFtpItem_Click(object sender, EventArgs e)
+        {
+            //See if item is selected
+            //If No then return message "No Item Selected"
+            var items = listViewFTPItems.SelectedItems;
+            if (items == null)
+            {
+                MessageBox.Show("Error: No Item on the list is selected");
+                return;
+            }
+
+            if (listViewFTPItems.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Selected file count is above one. Please select only one file to delete");
+                return;
+            }
+
+            if (listViewFTPItems.SelectedItems.Count > 0)
+            {
+                
+                var itemName = listViewFTPItems.SelectedItems[0].SubItems[0].Text;
+                var itemType = listViewFTPItems.SelectedItems[0].SubItems[1].Text;
+                var itemSize = listViewFTPItems.SelectedItems[0].SubItems[2].Text;
+                //rest of your logic
+                if (itemType == "File")
+                {
+                    DeleteFTPFile(itemName);
+                }
+                else if (itemType == "Directory")
+                {
+                    DeleteFTPDiretory(itemName);
+                }
+                else
+                {
+                    MessageBox.Show("Error: Unexpected Value. Not a File or Directory");
+                }
+
+                UpdateListViewFTPItems(_currentDirectory);
+            }
+          
+            
+            //Add this later: If item is selected then show message confirming that the user really wants to delete this file or directory.
+
+
+            //If item selected is a directory then check to see if the directory is empty.
+
+            //If it is empty then delete directory
+
+            //If it is not empty then delete each file inside and then 
+
+            //If the selected item is a file then delete file.
+           
+        }
+
+        private void DeleteFTPDiretory(string directoryName)
+        {
+            string fullPathofFileToBeDeleted = _currentDirectory + '/' + directoryName;
+            _ftpClient.removeDirectory(fullPathofFileToBeDeleted);
+           
+        }
+
+        private void DeleteFTPFile(string file)
+        {
+            string fullPathofFileToBeDeleted = _currentDirectory+ '/' + file;
+            _ftpClient.delete(fullPathofFileToBeDeleted);
+         
+        }
+
+        private void buttonCreateNewDirectory_Click(object sender, EventArgs e)
+        {
+            string promptValue = Prompt.ShowDialog("Create a New Directory", "What do you want to name the new directory?");
+            _ftpClient.createDirectory(promptValue);
+
+            UpdateListViewFTPItems(_currentDirectory);
+        }
+
         //private void treeView1_MouseMove(object sender, MouseEventArgs e)
         //{ 
         //   // Get the node at the current mouse pointer location.  
         //    TreeNode theNode = this.treeView1.GetNodeAt(e.X, e.Y);  
-  
+
         //   // Set a ToolTip only if the mouse pointer is actually paused on a node.  
         //   if (theNode != null && theNode.Tag != null)  
         //   {  
@@ -148,10 +296,10 @@ namespace Alpha_FTP_UI_WindowsForms
         //   {  
         //       this.toolTip1.SetToolTip(this.treeView1, "");
         //}
-    //}
+        //}
 
 
 
-}
+    }
 
 }
