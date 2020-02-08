@@ -15,6 +15,7 @@ namespace Alpha_FTP_UI_WindowsForms
     {
         ftp _ftpClient = null;
         string _currentDirectory = "";
+        string _currentLocalPath = "";
         public Form1()
         {
             InitializeComponent();
@@ -115,6 +116,38 @@ namespace Alpha_FTP_UI_WindowsForms
             }
         }
 
+        private void UpdateListViewLocalItems(string directory)
+        {
+
+            FolderBrowserDialog folderPicker = new FolderBrowserDialog();
+            if (folderPicker.ShowDialog() == DialogResult.OK)
+            {
+
+                listViewLocalFiles.Items.Clear();
+                listViewLocalFiles.View = View.Details;
+                listViewLocalFiles.Columns.Add("Name", 100);
+                listViewLocalFiles.Columns.Add("Type", 100);
+                listViewLocalFiles.Columns.Add("Size", 100);
+                listViewLocalFiles.Columns.Add("Last Updated", 100);
+
+                _currentLocalPath = folderPicker.SelectedPath;
+
+                string[] files = Directory.GetFiles(folderPicker.SelectedPath);
+                foreach (string file in files)
+                {
+
+                    string fileName = Path.GetFileName(file);
+                    ListViewItem item = new ListViewItem(fileName);
+                    item.Tag = file;
+
+                    listViewLocalFiles.Items.Add(item);
+
+                }
+
+            }
+
+        }
+        
         private bool ConnectToFTP(string host, string userName, string password)
         {
             textBox4.Text = "Host: " + host + " Username: " + userName + " Password: " + password;
@@ -125,7 +158,6 @@ namespace Alpha_FTP_UI_WindowsForms
 
            return true;
         }
-
         private void buttonLoadDirectory_Click(object sender, EventArgs e)
         {
 
@@ -138,9 +170,6 @@ namespace Alpha_FTP_UI_WindowsForms
 
             progressBar1.Value = 0;
         }
-
-
-
         public void LoadDirectory(string Dir)
         {
             DirectoryInfo di = new DirectoryInfo(Dir);
@@ -153,7 +182,6 @@ namespace Alpha_FTP_UI_WindowsForms
             LoadFiles(Dir, tds);
             LoadSubDirectories(Dir, tds);
         }
-
         private void LoadSubDirectories(string dir, TreeNode td)
         {
             // Get all subdirectories  
@@ -173,7 +201,6 @@ namespace Alpha_FTP_UI_WindowsForms
 
             }
         }
-
         private void LoadFiles(string dir, TreeNode td)
         {
             string[] Files = Directory.GetFiles(dir, "*.*");
@@ -190,7 +217,6 @@ namespace Alpha_FTP_UI_WindowsForms
 
             }
         }
-
         private void UpdateProgress()
         {
             if (progressBar1.Value < progressBar1.Maximum)
@@ -202,7 +228,6 @@ namespace Alpha_FTP_UI_WindowsForms
                 Application.DoEvents();
             }
         }
-
         private void buttonDeleteSelectedFtpItem_Click(object sender, EventArgs e)
         {
             //See if item is selected
@@ -256,21 +281,18 @@ namespace Alpha_FTP_UI_WindowsForms
             //If the selected item is a file then delete file.
            
         }
-
         private void DeleteFTPDiretory(string directoryName)
         {
             string fullPathofFileToBeDeleted = _currentDirectory + '/' + directoryName;
             _ftpClient.removeDirectory(fullPathofFileToBeDeleted);
            
         }
-
         private void DeleteFTPFile(string file)
         {
             string fullPathofFileToBeDeleted = _currentDirectory+ '/' + file;
             _ftpClient.delete(fullPathofFileToBeDeleted);
          
         }
-
         private void buttonCreateNewDirectory_Click(object sender, EventArgs e)
         {
             string promptValue = Prompt.ShowDialog("What do you want to name the new directory?", "Create a New Directory");
@@ -278,7 +300,6 @@ namespace Alpha_FTP_UI_WindowsForms
 
             UpdateListViewFTPItems(_currentDirectory);
         }
-
         private void buttonRenameSelected_Click(object sender, EventArgs e)
         {
             string newName = Prompt.ShowDialog("Please input new name.", "Rename");
@@ -328,6 +349,84 @@ namespace Alpha_FTP_UI_WindowsForms
 
             UpdateListViewFTPItems(_currentDirectory);
         }
+
+        private void buttonRefreshLocalFileView_Click(object sender, EventArgs e)
+        {
+            UpdateListViewLocalItems(@"C:\TestFolder");
+        }
+
+        private void buttonDownloadSelectedFile_Click(object sender, EventArgs e)
+        {
+
+            DownloadSelectedFileFromFTPtoLocal();
+        }
+
+        private void DownloadSelectedFileFromFTPtoLocal()
+        {
+            //See if item is selected
+            //If No then return message "No Item Selected"
+            var items = listViewFTPItems.SelectedItems;
+            if (items == null)
+            {
+                MessageBox.Show("Error: No Item on the list is selected");
+                return;
+            }
+
+            if (listViewFTPItems.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Selected file count is above one. Please select only one file to delete");
+                return;
+            }
+
+            if (listViewFTPItems.SelectedItems.Count > 0)
+            {
+
+                var itemName = listViewFTPItems.SelectedItems[0].SubItems[0].Text;
+                var itemType = listViewFTPItems.SelectedItems[0].SubItems[1].Text;
+                var itemSize = listViewFTPItems.SelectedItems[0].SubItems[2].Text;
+                //rest of your logic
+                if (itemType == "File")
+                {
+                    DownloadFTPFile(itemName);
+                }
+                else if (itemType == "Directory")
+                {
+                    MessageBox.Show("Sorry we cannot download directories at this time. Please select a file instead for download.");
+                }
+                else
+                {
+                    MessageBox.Show("Error: Unexpected Value. Not a File or Directory");
+                }
+
+                UpdateListViewFTPItems(_currentDirectory);
+            }
+
+        }
+
+        private void DownloadFTPFile(string itemName)
+        {
+            string fullPathofFileToBeDownloaded = _currentDirectory + '/' + itemName;
+            string fullPathofFileDestination = _currentLocalPath + "\\" + itemName;
+
+            ///* Download a File */
+            //ftpClient.download("/home/ftpuser/HelloWorld.txt", @"C:\TestFiles\HelloWorld.txt");
+            _ftpClient.download(fullPathofFileToBeDownloaded, fullPathofFileDestination);
+        }
+
+        private void UploadSelectedFileFromFTPtoLocal()
+        {
+            var fileName = listViewLocalFiles.SelectedItems[0].SubItems[0].Text;
+            var _currentLocalPath = @"C:\\jonje\\Desktop\\Test";
+            var fullPathOfFile = _currentLocalPath + "\\" + fileName;
+            var foo = "";
+        }
+
+        private void buttonUploadSelectedFile_Click(object sender, EventArgs e)
+        {
+            UploadSelectedFileFromFTPtoLocal();
+        }
+
+
 
         //private void treeView1_MouseMove(object sender, MouseEventArgs e)
         //{ 

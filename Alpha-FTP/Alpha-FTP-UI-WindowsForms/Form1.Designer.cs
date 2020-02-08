@@ -50,10 +50,8 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.treeView2 = new System.Windows.Forms.TreeView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.buttonLoadDirectory = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -61,6 +59,10 @@
             this.buttonCreateNewDirectory = new System.Windows.Forms.Button();
             this.buttonRenameSelected = new System.Windows.Forms.Button();
             this.listViewFTPItems = new System.Windows.Forms.ListView();
+            this.listViewLocalFiles = new System.Windows.Forms.ListView();
+            this.buttonRefreshLocalFileView = new System.Windows.Forms.Button();
+            this.buttonUploadSelectedFile = new System.Windows.Forms.Button();
+            this.buttonDownloadSelectedFile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -239,13 +241,6 @@
             this.imageList1.Images.SetKeyName(0, "folder.png");
             this.imageList1.Images.SetKeyName(1, "folder2.png");
             // 
-            // treeView2
-            // 
-            this.treeView2.Location = new System.Drawing.Point(517, 130);
-            this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(400, 120);
-            this.treeView2.TabIndex = 4;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -263,14 +258,6 @@
             this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 6;
             this.label5.Text = "FTP Server";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 328);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(400, 134);
-            this.listBox1.TabIndex = 7;
             // 
             // textBox4
             // 
@@ -338,11 +325,57 @@
             this.listViewFTPItems.UseCompatibleStateImageBehavior = false;
             this.listViewFTPItems.View = System.Windows.Forms.View.Details;
             // 
+            // listViewLocalFiles
+            // 
+            this.listViewLocalFiles.HideSelection = false;
+            this.listViewLocalFiles.Location = new System.Drawing.Point(15, 320);
+            this.listViewLocalFiles.MultiSelect = false;
+            this.listViewLocalFiles.Name = "listViewLocalFiles";
+            this.listViewLocalFiles.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.listViewLocalFiles.Size = new System.Drawing.Size(400, 142);
+            this.listViewLocalFiles.TabIndex = 16;
+            this.listViewLocalFiles.UseCompatibleStateImageBehavior = false;
+            this.listViewLocalFiles.View = System.Windows.Forms.View.Details;
+            // 
+            // buttonRefreshLocalFileView
+            // 
+            this.buttonRefreshLocalFileView.Location = new System.Drawing.Point(15, 467);
+            this.buttonRefreshLocalFileView.Name = "buttonRefreshLocalFileView";
+            this.buttonRefreshLocalFileView.Size = new System.Drawing.Size(136, 23);
+            this.buttonRefreshLocalFileView.TabIndex = 17;
+            this.buttonRefreshLocalFileView.Text = "Refresh Local File View";
+            this.buttonRefreshLocalFileView.UseVisualStyleBackColor = true;
+            this.buttonRefreshLocalFileView.Click += new System.EventHandler(this.buttonRefreshLocalFileView_Click);
+            // 
+            // buttonUploadSelectedFile
+            // 
+            this.buttonUploadSelectedFile.Location = new System.Drawing.Point(416, 343);
+            this.buttonUploadSelectedFile.Name = "buttonUploadSelectedFile";
+            this.buttonUploadSelectedFile.Size = new System.Drawing.Size(99, 23);
+            this.buttonUploadSelectedFile.TabIndex = 18;
+            this.buttonUploadSelectedFile.Text = "Upload File -->";
+            this.buttonUploadSelectedFile.UseVisualStyleBackColor = true;
+            this.buttonUploadSelectedFile.Click += new System.EventHandler(this.buttonUploadSelectedFile_Click);
+            // 
+            // buttonDownloadSelectedFile
+            // 
+            this.buttonDownloadSelectedFile.Location = new System.Drawing.Point(416, 400);
+            this.buttonDownloadSelectedFile.Name = "buttonDownloadSelectedFile";
+            this.buttonDownloadSelectedFile.Size = new System.Drawing.Size(99, 23);
+            this.buttonDownloadSelectedFile.TabIndex = 19;
+            this.buttonDownloadSelectedFile.Text = "<-- Download File";
+            this.buttonDownloadSelectedFile.UseVisualStyleBackColor = true;
+            this.buttonDownloadSelectedFile.Click += new System.EventHandler(this.buttonDownloadSelectedFile_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 537);
+            this.Controls.Add(this.buttonDownloadSelectedFile);
+            this.Controls.Add(this.buttonUploadSelectedFile);
+            this.Controls.Add(this.buttonRefreshLocalFileView);
+            this.Controls.Add(this.listViewLocalFiles);
             this.Controls.Add(this.listViewFTPItems);
             this.Controls.Add(this.buttonRenameSelected);
             this.Controls.Add(this.buttonCreateNewDirectory);
@@ -350,10 +383,8 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.buttonLoadDirectory);
             this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.treeView2);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -393,10 +424,8 @@
         private System.Windows.Forms.ToolStripMenuItem bookmarksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.TreeView treeView2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button buttonLoadDirectory;
@@ -406,6 +435,10 @@
         private System.Windows.Forms.Button buttonCreateNewDirectory;
         private System.Windows.Forms.Button buttonRenameSelected;
         private System.Windows.Forms.ListView listViewFTPItems;
+        private System.Windows.Forms.ListView listViewLocalFiles;
+        private System.Windows.Forms.Button buttonRefreshLocalFileView;
+        private System.Windows.Forms.Button buttonUploadSelectedFile;
+        private System.Windows.Forms.Button buttonDownloadSelectedFile;
     }
 }
 
