@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -54,6 +55,9 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.buttonLoadDirectory = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -205,9 +209,18 @@
             // 
             // treeView1
             // 
+            this.treeView1.AllowDrop = true;
+            this.treeView1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.treeView1.FullRowSelect = true;
+            this.treeView1.ImageIndex = 0;
+            this.treeView1.ImageList = this.imageList1;
+            this.treeView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.treeView1.Location = new System.Drawing.Point(12, 130);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(400, 172);
+            this.treeView1.SelectedImageKey = "folder.png";
+            this.treeView1.ShowLines = false;
+            this.treeView1.ShowNodeToolTips = true;
+            this.treeView1.Size = new System.Drawing.Size(400, 153);
             this.treeView1.TabIndex = 3;
             // 
             // treeView2
@@ -264,11 +277,37 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(101, 17);
             this.toolStripStatusLabel1.Text = "Ready to Connect";
             // 
+            // buttonLoadDirectory
+            // 
+            this.buttonLoadDirectory.Location = new System.Drawing.Point(418, 143);
+            this.buttonLoadDirectory.Name = "buttonLoadDirectory";
+            this.buttonLoadDirectory.Size = new System.Drawing.Size(93, 23);
+            this.buttonLoadDirectory.TabIndex = 10;
+            this.buttonLoadDirectory.Text = "Load Directory";
+            this.buttonLoadDirectory.UseVisualStyleBackColor = true;
+            this.buttonLoadDirectory.Click += new System.EventHandler(this.buttonLoadDirectory_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(15, 288);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(397, 14);
+            this.progressBar1.TabIndex = 11;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "folder.png");
+            this.imageList1.Images.SetKeyName(1, "folder2.png");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 537);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.buttonLoadDirectory);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
@@ -321,6 +360,9 @@
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Button buttonLoadDirectory;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 
