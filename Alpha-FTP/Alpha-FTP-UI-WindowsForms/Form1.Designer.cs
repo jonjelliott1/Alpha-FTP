@@ -324,6 +324,7 @@
             this.buttonRenameSelected.TabIndex = 14;
             this.buttonRenameSelected.Text = "Rename Selected";
             this.buttonRenameSelected.UseVisualStyleBackColor = true;
+            this.buttonRenameSelected.Click += new System.EventHandler(this.buttonRenameSelected_Click);
             // 
             // listViewFTPItems
             // 

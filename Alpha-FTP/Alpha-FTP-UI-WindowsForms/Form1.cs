@@ -273,8 +273,58 @@ namespace Alpha_FTP_UI_WindowsForms
 
         private void buttonCreateNewDirectory_Click(object sender, EventArgs e)
         {
-            string promptValue = Prompt.ShowDialog("Create a New Directory", "What do you want to name the new directory?");
+            string promptValue = Prompt.ShowDialog("What do you want to name the new directory?", "Create a New Directory");
             _ftpClient.createDirectory(promptValue);
+
+            UpdateListViewFTPItems(_currentDirectory);
+        }
+
+        private void buttonRenameSelected_Click(object sender, EventArgs e)
+        {
+            string newName = Prompt.ShowDialog("Please input new name.", "Rename");
+
+            var items = listViewFTPItems.SelectedItems;
+            if (items == null)
+            {
+                MessageBox.Show("Error: No Item on the list is selected");
+                return;
+            }
+
+            if (listViewFTPItems.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Selected file count is above one. Please select only one to rename");
+                return;
+            }
+
+            if (listViewFTPItems.SelectedItems.Count > 0)
+            {
+                var itemName = listViewFTPItems.SelectedItems[0].SubItems[0].Text;
+                var itemType = listViewFTPItems.SelectedItems[0].SubItems[1].Text;
+                var itemSize = listViewFTPItems.SelectedItems[0].SubItems[2].Text;
+
+                var fullPathAndName = _currentDirectory + '/' + itemName;
+                if (itemType == "File")
+                {
+                    _ftpClient.renameFile(fullPathAndName, newName);
+                }
+                else if (itemType == "Directory")
+                {
+                    _ftpClient.renameFile(fullPathAndName, newName);
+                }
+                else
+                {
+                    MessageBox.Show("Error: Unexpected Value. Not a File or Directory");
+                }
+
+                UpdateListViewFTPItems(_currentDirectory);
+            }
+
+
+
+
+
+         
+
 
             UpdateListViewFTPItems(_currentDirectory);
         }

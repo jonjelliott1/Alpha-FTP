@@ -156,7 +156,7 @@ namespace Alpha_FTP_UI_WindowsForms
             return;
         }
         /* Rename File */
-        public void rename(string currentFileNameAndPath, string newFileName)
+        public void renameFile(string currentFileNameAndPath, string newFileName)
         {
             try
             {
@@ -181,6 +181,9 @@ namespace Alpha_FTP_UI_WindowsForms
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             return;
         }
+
+       
+
 
         /* Create a New Directory on the FTP Server */
         public void createDirectory(string newDirectory)
