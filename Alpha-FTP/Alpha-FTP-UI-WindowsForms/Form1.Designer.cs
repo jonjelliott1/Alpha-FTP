@@ -48,13 +48,10 @@
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.buttonLoadDirectory = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.buttonDeleteSelectedFtpItem = new System.Windows.Forms.Button();
             this.buttonCreateNewDirectory = new System.Windows.Forms.Button();
             this.buttonRenameSelected = new System.Windows.Forms.Button();
@@ -218,22 +215,6 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // treeView1
-            // 
-            this.treeView1.AllowDrop = true;
-            this.treeView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treeView1.FullRowSelect = true;
-            this.treeView1.ImageIndex = 0;
-            this.treeView1.ImageList = this.imageList1;
-            this.treeView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.treeView1.Location = new System.Drawing.Point(12, 130);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.SelectedImageKey = "folder.png";
-            this.treeView1.ShowLines = false;
-            this.treeView1.ShowNodeToolTips = true;
-            this.treeView1.Size = new System.Drawing.Size(400, 153);
-            this.treeView1.TabIndex = 3;
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -265,23 +246,6 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(902, 20);
             this.textBox4.TabIndex = 9;
-            // 
-            // buttonLoadDirectory
-            // 
-            this.buttonLoadDirectory.Location = new System.Drawing.Point(418, 143);
-            this.buttonLoadDirectory.Name = "buttonLoadDirectory";
-            this.buttonLoadDirectory.Size = new System.Drawing.Size(93, 23);
-            this.buttonLoadDirectory.TabIndex = 10;
-            this.buttonLoadDirectory.Text = "Load Directory";
-            this.buttonLoadDirectory.UseVisualStyleBackColor = true;
-            this.buttonLoadDirectory.Click += new System.EventHandler(this.buttonLoadDirectory_Click);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(15, 288);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(397, 14);
-            this.progressBar1.TabIndex = 11;
             // 
             // buttonDeleteSelectedFtpItem
             // 
@@ -316,11 +280,11 @@
             // listViewFTPItems
             // 
             this.listViewFTPItems.HideSelection = false;
-            this.listViewFTPItems.Location = new System.Drawing.Point(517, 320);
+            this.listViewFTPItems.Location = new System.Drawing.Point(517, 130);
             this.listViewFTPItems.MultiSelect = false;
             this.listViewFTPItems.Name = "listViewFTPItems";
             this.listViewFTPItems.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.listViewFTPItems.Size = new System.Drawing.Size(400, 142);
+            this.listViewFTPItems.Size = new System.Drawing.Size(400, 332);
             this.listViewFTPItems.TabIndex = 15;
             this.listViewFTPItems.UseCompatibleStateImageBehavior = false;
             this.listViewFTPItems.View = System.Windows.Forms.View.Details;
@@ -328,11 +292,11 @@
             // listViewLocalFiles
             // 
             this.listViewLocalFiles.HideSelection = false;
-            this.listViewLocalFiles.Location = new System.Drawing.Point(15, 320);
+            this.listViewLocalFiles.Location = new System.Drawing.Point(15, 130);
             this.listViewLocalFiles.MultiSelect = false;
             this.listViewLocalFiles.Name = "listViewLocalFiles";
             this.listViewLocalFiles.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.listViewLocalFiles.Size = new System.Drawing.Size(400, 142);
+            this.listViewLocalFiles.Size = new System.Drawing.Size(400, 332);
             this.listViewLocalFiles.TabIndex = 16;
             this.listViewLocalFiles.UseCompatibleStateImageBehavior = false;
             this.listViewLocalFiles.View = System.Windows.Forms.View.Details;
@@ -341,15 +305,15 @@
             // 
             this.buttonRefreshLocalFileView.Location = new System.Drawing.Point(15, 467);
             this.buttonRefreshLocalFileView.Name = "buttonRefreshLocalFileView";
-            this.buttonRefreshLocalFileView.Size = new System.Drawing.Size(136, 23);
+            this.buttonRefreshLocalFileView.Size = new System.Drawing.Size(400, 23);
             this.buttonRefreshLocalFileView.TabIndex = 17;
-            this.buttonRefreshLocalFileView.Text = "Refresh Local File View";
+            this.buttonRefreshLocalFileView.Text = "Select Folder";
             this.buttonRefreshLocalFileView.UseVisualStyleBackColor = true;
             this.buttonRefreshLocalFileView.Click += new System.EventHandler(this.buttonRefreshLocalFileView_Click);
             // 
             // buttonUploadSelectedFile
             // 
-            this.buttonUploadSelectedFile.Location = new System.Drawing.Point(416, 343);
+            this.buttonUploadSelectedFile.Location = new System.Drawing.Point(416, 240);
             this.buttonUploadSelectedFile.Name = "buttonUploadSelectedFile";
             this.buttonUploadSelectedFile.Size = new System.Drawing.Size(99, 23);
             this.buttonUploadSelectedFile.TabIndex = 18;
@@ -359,7 +323,7 @@
             // 
             // buttonDownloadSelectedFile
             // 
-            this.buttonDownloadSelectedFile.Location = new System.Drawing.Point(416, 400);
+            this.buttonDownloadSelectedFile.Location = new System.Drawing.Point(416, 297);
             this.buttonDownloadSelectedFile.Name = "buttonDownloadSelectedFile";
             this.buttonDownloadSelectedFile.Size = new System.Drawing.Size(99, 23);
             this.buttonDownloadSelectedFile.TabIndex = 19;
@@ -380,12 +344,9 @@
             this.Controls.Add(this.buttonRenameSelected);
             this.Controls.Add(this.buttonCreateNewDirectory);
             this.Controls.Add(this.buttonDeleteSelectedFtpItem);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.buttonLoadDirectory);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
@@ -423,13 +384,10 @@
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bookmarksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.Button buttonLoadDirectory;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button buttonDeleteSelectedFtpItem;
         private System.Windows.Forms.Button buttonCreateNewDirectory;
