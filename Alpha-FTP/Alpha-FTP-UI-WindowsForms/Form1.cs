@@ -23,10 +23,6 @@ namespace Alpha_FTP_UI_WindowsForms
             textBox1.Text = "ftp://192.168.1.18";
             textBox2.Text = "ftpuser";
             textBox3.Text = "ftpuser";
-
-           
-
-
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -158,76 +154,8 @@ namespace Alpha_FTP_UI_WindowsForms
 
            return true;
         }
-        private void buttonLoadDirectory_Click(object sender, EventArgs e)
-        {
-
-            // Setting Inital Value of Progress Bar  
-            progressBar1.Value = 0;
-            // Clear All Nodes if Already Exists  
-            treeView1.Nodes.Clear();
-         //   toolTip1.ShowAlways = true;
-            LoadDirectory(@"C:\TestFiles");
-
-            progressBar1.Value = 0;
-        }
-        public void LoadDirectory(string Dir)
-        {
-            DirectoryInfo di = new DirectoryInfo(Dir);
-            //Setting ProgressBar Maximum Value  
-            progressBar1.Maximum = Directory.GetFiles(Dir, "*.*", SearchOption.AllDirectories).Length + Directory.GetDirectories(Dir, "**", SearchOption.AllDirectories).Length;
-            TreeNode tds = treeView1.Nodes.Add(di.Name);
-            tds.Tag = di.FullName;
-            tds.StateImageIndex = 0;
-            tds.ImageKey = "folder.png";
-            LoadFiles(Dir, tds);
-            LoadSubDirectories(Dir, tds);
-        }
-        private void LoadSubDirectories(string dir, TreeNode td)
-        {
-            // Get all subdirectories  
-            string[] subdirectoryEntries = Directory.GetDirectories(dir);
-            // Loop through them to see if they have any other subdirectories  
-            foreach (string subdirectory in subdirectoryEntries)
-            {
-
-                DirectoryInfo di = new DirectoryInfo(subdirectory);
-                TreeNode tds = td.Nodes.Add(di.Name);
-                tds.StateImageIndex = 0;
-                tds.Tag = di.FullName;
-   
-                LoadFiles(subdirectory, tds);
-                LoadSubDirectories(subdirectory, tds);
-                UpdateProgress();
-
-            }
-        }
-        private void LoadFiles(string dir, TreeNode td)
-        {
-            string[] Files = Directory.GetFiles(dir, "*.*");
-
-            // Loop through them to see files  
-            foreach (string file in Files)
-            {
-                FileInfo fi = new FileInfo(file);
-                TreeNode tds = td.Nodes.Add(fi.Name);
-                tds.Tag = fi.FullName;
-                tds.StateImageIndex = 1;
-               tds.ImageKey = "folder2.png";
-                UpdateProgress();
-
-            }
-        }
-        private void UpdateProgress()
-        {
-            if (progressBar1.Value < progressBar1.Maximum)
-            {
-                progressBar1.Value++;
-                int percent = (int)(((double)progressBar1.Value / (double)progressBar1.Maximum) * 100);
-                progressBar1.CreateGraphics().DrawString(percent.ToString() + "%", new Font("Arial", (float)8.25, FontStyle.Regular), Brushes.Black, new PointF(progressBar1.Width / 2 - 10, progressBar1.Height / 2 - 7));
-
-                Application.DoEvents();
-            }
-        }
+      
+      
         private void buttonDeleteSelectedFtpItem_Click(object sender, EventArgs e)
         {
             //See if item is selected
@@ -267,18 +195,7 @@ namespace Alpha_FTP_UI_WindowsForms
 
                 UpdateListViewFTPItems(_currentDirectory);
             }
-          
-            
-            //Add this later: If item is selected then show message confirming that the user really wants to delete this file or directory.
-
-
-            //If item selected is a directory then check to see if the directory is empty.
-
-            //If it is empty then delete directory
-
-            //If it is not empty then delete each file inside and then 
-
-            //If the selected item is a file then delete file.
+        
            
         }
         private void DeleteFTPDiretory(string directoryName)
