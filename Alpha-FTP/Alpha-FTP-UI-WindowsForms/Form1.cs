@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Alpha_FTP_UI_WindowsForms
@@ -55,8 +49,8 @@ namespace Alpha_FTP_UI_WindowsForms
             listViewFTPItems.Clear();
 
             listViewFTPItems.Columns.Add("Name", 100);
-            listViewFTPItems.Columns.Add("Type", 100);
-            listViewFTPItems.Columns.Add("Size", 100);
+            listViewFTPItems.Columns.Add("Type", 55);
+            listViewFTPItems.Columns.Add("Size", 75);
             listViewFTPItems.Columns.Add("Last Updated", 100);
             /* Get Contents of a Directory (Names Only) */
             string[] detailDirectoryListing = _ftpClient.directoryListDetailed(directory);
@@ -112,7 +106,7 @@ namespace Alpha_FTP_UI_WindowsForms
             }
         }
 
-        private void UpdateListViewLocalItems(string directory)
+        private void UpdateListViewLocalItems()
         {
 
             FolderBrowserDialog folderPicker = new FolderBrowserDialog();
@@ -122,8 +116,8 @@ namespace Alpha_FTP_UI_WindowsForms
                 listViewLocalFiles.Items.Clear();
                 listViewLocalFiles.View = View.Details;
                 listViewLocalFiles.Columns.Add("Name", 100);
-                listViewLocalFiles.Columns.Add("Type", 100);
-                listViewLocalFiles.Columns.Add("Size", 100);
+                listViewLocalFiles.Columns.Add("Type", 50);
+                listViewLocalFiles.Columns.Add("Size", 75);
                 listViewLocalFiles.Columns.Add("Last Updated", 100);
 
                 _currentLocalPath = folderPicker.SelectedPath;
@@ -143,12 +137,41 @@ namespace Alpha_FTP_UI_WindowsForms
             }
 
         }
-        
+
+        private void RefreshListViewLocalItems()
+        {
+
+            if (_currentLocalPath != "")
+            {
+
+                listViewLocalFiles.Items.Clear();
+                listViewLocalFiles.View = View.Details;
+                listViewLocalFiles.Columns.Add("Name", 100);
+                listViewLocalFiles.Columns.Add("Type", 50);
+                listViewLocalFiles.Columns.Add("Size", 75);
+                listViewLocalFiles.Columns.Add("Last Updated", 100);
+                               
+                string[] files = Directory.GetFiles(_currentLocalPath);
+                foreach (string file in files)
+                {
+
+                    string fileName = Path.GetFileName(file);
+                    ListViewItem item = new ListViewItem(fileName);
+                    item.Tag = file;
+
+                    listViewLocalFiles.Items.Add(item);
+
+                }
+
+            }
+
+
+
+        }
+
         private bool ConnectToFTP(string host, string userName, string password)
         {
-            textBox4.Text = "Host: " + host + " Username: " + userName + " Password: " + password;
 
-            toolStripStatusLabel1.Text = "Attempting to connect...";
             ftp ftpClient = new ftp(host, userName, password);
             _ftpClient = ftpClient;
 
@@ -269,7 +292,7 @@ namespace Alpha_FTP_UI_WindowsForms
 
         private void buttonRefreshLocalFileView_Click(object sender, EventArgs e)
         {
-            UpdateListViewLocalItems(@"C:\TestFolder");
+            UpdateListViewLocalItems();
         }
 
         private void buttonDownloadSelectedFile_Click(object sender, EventArgs e)
@@ -328,22 +351,31 @@ namespace Alpha_FTP_UI_WindowsForms
             ///* Download a File */
             //ftpClient.download("/home/ftpuser/HelloWorld.txt", @"C:\TestFiles\HelloWorld.txt");
             _ftpClient.download(fullPathofFileToBeDownloaded, fullPathofFileDestination);
+            RefreshListViewLocalItems();
         }
 
         private void UploadSelectedFileFromFTPtoLocal()
         {
             var fileName = listViewLocalFiles.SelectedItems[0].SubItems[0].Text;
-            var _currentLocalPath = @"C:\\jonje\\Desktop\\Test";
-            var fullPathOfFile = _currentLocalPath + "\\" + fileName;
-            var foo = "";
+           // var _currentLocalPath = @"C:\\jonje\\Desktop\\Test";
+          //  var fullPathOfFile = _currentLocalPath + "\\" + fileName;
+
+            string fullPathofFileToBeUploaded = _currentLocalPath + '\\' + fileName;
+            string fullPathofFileDestination = _currentDirectory + "/" + fileName;
+
+            ///* Download a File */
+            //ftpClient.download("/home/ftpuser/HelloWorld.txt", @"C:\TestFiles\HelloWorld.txt");
+            _ftpClient.upload(fullPathofFileDestination, fullPathofFileToBeUploaded);
+            UpdateListViewFTPItems(_currentDirectory);
+
+
         }
 
         private void buttonUploadSelectedFile_Click(object sender, EventArgs e)
         {
             UploadSelectedFileFromFTPtoLocal();
+            UpdateListViewFTPItems(_currentDirectory);
         }
-
-
 
         //private void treeView1_MouseMove(object sender, MouseEventArgs e)
         //{ 

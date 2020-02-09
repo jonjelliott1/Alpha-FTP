@@ -38,20 +38,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.transferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.buttonDeleteSelectedFtpItem = new System.Windows.Forms.Button();
             this.buttonCreateNewDirectory = new System.Windows.Forms.Button();
             this.buttonRenameSelected = new System.Windows.Forms.Button();
@@ -61,8 +50,6 @@
             this.buttonUploadSelectedFile = new System.Windows.Forms.Button();
             this.buttonDownloadSelectedFile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -74,7 +61,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(0, 27);
+            this.groupBox1.Location = new System.Drawing.Point(1, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(925, 48);
             this.groupBox1.TabIndex = 0;
@@ -84,7 +71,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(536, 19);
+            this.label3.Location = new System.Drawing.Point(513, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 6;
@@ -93,7 +80,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(598, 16);
+            this.textBox3.Location = new System.Drawing.Point(575, 16);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(216, 20);
             this.textBox3.TabIndex = 5;
@@ -111,7 +98,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(348, 16);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(172, 20);
+            this.textBox2.Size = new System.Drawing.Size(146, 20);
             this.textBox2.TabIndex = 3;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -133,87 +120,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(842, 16);
+            this.button1.Location = new System.Drawing.Point(801, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Connect";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 515);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(934, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(101, 17);
-            this.toolStripStatusLabel1.Text = "Ready to Connect";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.viewToolStripMenuItem,
-            this.transferToolStripMenuItem,
-            this.serverToolStripMenuItem,
-            this.bookmarksToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(934, 24);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
-            // 
-            // transferToolStripMenuItem
-            // 
-            this.transferToolStripMenuItem.Name = "transferToolStripMenuItem";
-            this.transferToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.transferToolStripMenuItem.Text = "Transfer";
-            // 
-            // serverToolStripMenuItem
-            // 
-            this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
-            this.serverToolStripMenuItem.Text = "Server";
-            // 
-            // bookmarksToolStripMenuItem
-            // 
-            this.bookmarksToolStripMenuItem.Name = "bookmarksToolStripMenuItem";
-            this.bookmarksToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
-            this.bookmarksToolStripMenuItem.Text = "Bookmarks";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
             // 
             // imageList1
             // 
@@ -225,7 +138,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 114);
+            this.label4.Location = new System.Drawing.Point(12, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(33, 13);
             this.label4.TabIndex = 5;
@@ -234,24 +147,17 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(514, 114);
+            this.label5.Location = new System.Drawing.Point(514, 74);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 6;
             this.label5.Text = "FTP Server";
             // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(15, 82);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(902, 20);
-            this.textBox4.TabIndex = 9;
-            // 
             // buttonDeleteSelectedFtpItem
             // 
-            this.buttonDeleteSelectedFtpItem.Location = new System.Drawing.Point(539, 468);
+            this.buttonDeleteSelectedFtpItem.Location = new System.Drawing.Point(517, 350);
             this.buttonDeleteSelectedFtpItem.Name = "buttonDeleteSelectedFtpItem";
-            this.buttonDeleteSelectedFtpItem.Size = new System.Drawing.Size(108, 23);
+            this.buttonDeleteSelectedFtpItem.Size = new System.Drawing.Size(94, 23);
             this.buttonDeleteSelectedFtpItem.TabIndex = 12;
             this.buttonDeleteSelectedFtpItem.Text = "Delete Selected";
             this.buttonDeleteSelectedFtpItem.UseVisualStyleBackColor = true;
@@ -259,7 +165,7 @@
             // 
             // buttonCreateNewDirectory
             // 
-            this.buttonCreateNewDirectory.Location = new System.Drawing.Point(657, 468);
+            this.buttonCreateNewDirectory.Location = new System.Drawing.Point(617, 350);
             this.buttonCreateNewDirectory.Name = "buttonCreateNewDirectory";
             this.buttonCreateNewDirectory.Size = new System.Drawing.Size(134, 23);
             this.buttonCreateNewDirectory.TabIndex = 13;
@@ -269,7 +175,7 @@
             // 
             // buttonRenameSelected
             // 
-            this.buttonRenameSelected.Location = new System.Drawing.Point(797, 468);
+            this.buttonRenameSelected.Location = new System.Drawing.Point(757, 350);
             this.buttonRenameSelected.Name = "buttonRenameSelected";
             this.buttonRenameSelected.Size = new System.Drawing.Size(120, 23);
             this.buttonRenameSelected.TabIndex = 14;
@@ -280,11 +186,11 @@
             // listViewFTPItems
             // 
             this.listViewFTPItems.HideSelection = false;
-            this.listViewFTPItems.Location = new System.Drawing.Point(517, 130);
+            this.listViewFTPItems.Location = new System.Drawing.Point(517, 90);
             this.listViewFTPItems.MultiSelect = false;
             this.listViewFTPItems.Name = "listViewFTPItems";
             this.listViewFTPItems.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.listViewFTPItems.Size = new System.Drawing.Size(400, 332);
+            this.listViewFTPItems.Size = new System.Drawing.Size(360, 254);
             this.listViewFTPItems.TabIndex = 15;
             this.listViewFTPItems.UseCompatibleStateImageBehavior = false;
             this.listViewFTPItems.View = System.Windows.Forms.View.Details;
@@ -292,20 +198,20 @@
             // listViewLocalFiles
             // 
             this.listViewLocalFiles.HideSelection = false;
-            this.listViewLocalFiles.Location = new System.Drawing.Point(15, 130);
+            this.listViewLocalFiles.Location = new System.Drawing.Point(15, 90);
             this.listViewLocalFiles.MultiSelect = false;
             this.listViewLocalFiles.Name = "listViewLocalFiles";
             this.listViewLocalFiles.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.listViewLocalFiles.Size = new System.Drawing.Size(400, 332);
+            this.listViewLocalFiles.Size = new System.Drawing.Size(360, 254);
             this.listViewLocalFiles.TabIndex = 16;
             this.listViewLocalFiles.UseCompatibleStateImageBehavior = false;
             this.listViewLocalFiles.View = System.Windows.Forms.View.Details;
             // 
             // buttonRefreshLocalFileView
             // 
-            this.buttonRefreshLocalFileView.Location = new System.Drawing.Point(15, 467);
+            this.buttonRefreshLocalFileView.Location = new System.Drawing.Point(15, 350);
             this.buttonRefreshLocalFileView.Name = "buttonRefreshLocalFileView";
-            this.buttonRefreshLocalFileView.Size = new System.Drawing.Size(400, 23);
+            this.buttonRefreshLocalFileView.Size = new System.Drawing.Size(360, 23);
             this.buttonRefreshLocalFileView.TabIndex = 17;
             this.buttonRefreshLocalFileView.Text = "Select Folder";
             this.buttonRefreshLocalFileView.UseVisualStyleBackColor = true;
@@ -313,7 +219,7 @@
             // 
             // buttonUploadSelectedFile
             // 
-            this.buttonUploadSelectedFile.Location = new System.Drawing.Point(416, 240);
+            this.buttonUploadSelectedFile.Location = new System.Drawing.Point(396, 121);
             this.buttonUploadSelectedFile.Name = "buttonUploadSelectedFile";
             this.buttonUploadSelectedFile.Size = new System.Drawing.Size(99, 23);
             this.buttonUploadSelectedFile.TabIndex = 18;
@@ -323,7 +229,7 @@
             // 
             // buttonDownloadSelectedFile
             // 
-            this.buttonDownloadSelectedFile.Location = new System.Drawing.Point(416, 297);
+            this.buttonDownloadSelectedFile.Location = new System.Drawing.Point(396, 196);
             this.buttonDownloadSelectedFile.Name = "buttonDownloadSelectedFile";
             this.buttonDownloadSelectedFile.Size = new System.Drawing.Size(99, 23);
             this.buttonDownloadSelectedFile.TabIndex = 19;
@@ -335,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 537);
+            this.ClientSize = new System.Drawing.Size(885, 388);
             this.Controls.Add(this.buttonDownloadSelectedFile);
             this.Controls.Add(this.buttonUploadSelectedFile);
             this.Controls.Add(this.buttonRefreshLocalFileView);
@@ -344,22 +250,14 @@
             this.Controls.Add(this.buttonRenameSelected);
             this.Controls.Add(this.buttonCreateNewDirectory);
             this.Controls.Add(this.buttonDeleteSelectedFtpItem);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Alpha-FTP";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,19 +273,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem transferToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bookmarksToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button buttonDeleteSelectedFtpItem;
         private System.Windows.Forms.Button buttonCreateNewDirectory;
